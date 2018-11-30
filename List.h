@@ -1,13 +1,17 @@
 #pragma once
 #include <iostream>
-
+int i=0;
 template<typename T>
 class List { 
 private:
 	int capacity;
 	int used;
 	T* data;
-	void grow() {}
+	void Checkgrow() {
+		if(i>=capacity){
+			capacity=capacity*2;
+		}
+	}
 public:
 	List(int initialSize) : capacity(initialSize), used(0), data(new T[capacity* sizeof(T)]) {}
 	~List() {
@@ -18,15 +22,16 @@ public:
 			data[i] = orig.data[i];
 	}
 	List& operator =(const List& orig) {
-    List temp = orig;	
+    List temp = orig;
 		swap(data, temp.data);
 		used = temp.used;
 		capacity = temp.capacity;
     return *this;		
 	}
 	void add(const T& val) {
-    grow();
+    Checkgrow();
 		data[used++] = val;
+		i++;
 	}
 	friend std::ostream& operator <<(std::ostream& s, const List& list) {
 		for (int i = 0; i < list.used; i++)

@@ -3,7 +3,10 @@
 using namespace std;
 
 int main() {
-	List<int> a(10);
+	List<int> a(2);
+	a.add(3);
+	a.add(3);
+	a.add(3);
 	a.add(3);
 
 	cout << a << '\n';
